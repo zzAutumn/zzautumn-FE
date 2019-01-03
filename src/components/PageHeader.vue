@@ -8,6 +8,9 @@
         <li><router-link :to="{name: 'about'}">关于</router-link></li>
       </ul>
     </div>
+    <div class="img-banner">
+      <img src="../assets/images/banner.jpg">
+    </div>
   </div>
 </template>
 
@@ -19,12 +22,24 @@ export default {
 
 <style lang='less' scoped>
 .header {
-  border-bottom: 2px solid #ddd;
+  .img-banner {
+    width: 100%;
+    height: 120px;
+    border:solid 1px #ddd;
+    margin-top: 10px;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
 }
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid #ddd;
   ul {
     list-style: none;
     display: flex;

@@ -15,12 +15,15 @@
   font-family: Inconsolata;
   src: url('assets/font/Inconsolata-Regular.ttf');
 }
-body {
+html,body {
   height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
 #app {
   font-family: ZCOOLXiaoWei,Inconsolata,'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 </style>
