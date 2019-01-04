@@ -18,7 +18,6 @@
 html,body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
 }
 #app {
   font-family: ZCOOLXiaoWei,Inconsolata,'Avenir', Helvetica, Arial, sans-serif;

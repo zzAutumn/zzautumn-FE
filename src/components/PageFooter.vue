@@ -14,7 +14,6 @@ export default {
 <style lang='less' scoped>
 .footer {
   width: 100%;
-  height: 80px;
   background-color: #efeeeeb5;
   color: #424444;
   display: flex;
@@ -22,5 +21,6 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 20px;
+  flex:  0 0 80px;
 }
 </style>
