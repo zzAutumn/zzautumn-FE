@@ -3,8 +3,8 @@
     <page-header></page-header>
     <div class="main-wrap">
       <div class="card">
-        <p class="title">JS 数组的几个常用方法</p>
-        <p class="date">2019-01-04</p>
+        <p class="title"><img src="@/assets/icons/office.svg"> JS 数组的几个常用方法</p>
+        <p class="date"><img src="@/assets/icons/calendar.svg"> 2019-01-04</p>
         <p class="abstract">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
       </div>
       <div class="card"></div>
@@ -51,11 +51,25 @@ export default {
       height: 186px;
       box-sizing: border-box;
       box-shadow: 3px 0 1px #eee;
+      cursor: pointer;
+      transform: all 0.3s ease;
+      transform: scale(0.95, 0.95);
       .title,.date {
         text-align: center;
       }
       .title {
         font-size: 1.3rem;
+        img {
+          height: 19px;
+          display: inline-block;
+          margin-right: 10px;
+        }
+      }
+      .date img {
+        height: 19px;
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: sub;
       }
       .abstract {
         padding: 0 20px;
@@ -65,6 +79,10 @@ export default {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+      }
+      &:hover {
+        box-shadow: 5px 0 1px #eee;
+        transform: scale(1, 1);
       }
     }
   }
