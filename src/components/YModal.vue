@@ -6,11 +6,11 @@
         <span class="close-btn" @click="close"><img src="@/assets/icons/close.svg"></span>
       </div>
       <div class="modal-body">
-        <p>example :D</p>
+        <p></p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-cancle" @click="close">取消</button>
-        <button class="btn btn-confirm">确定</button>
+        <button class="btn btn-confirm" @click="confirm">确定</button>
       </div>
     </div>
   </div>
@@ -26,7 +26,6 @@ export default {
   },
   watch: {
     showModal(val) {
-      console.log(val);
       const aEle = document.createElement('a');
       if (val) {
         aEle.href = '#y-modal';
@@ -40,6 +39,9 @@ export default {
   methods: {
     close() {
       this.$emit('closeModal');
+    },
+    confirm() {
+      this.$router.push('/edit');
     },
   },
 };
@@ -105,43 +107,6 @@ export default {
     justify-content: flex-end;
     padding-bottom: 10px;
     padding-right: 10px;
-    .btn {
-      border-radius: 2px;
-      font-size: 0.9rem;
-      padding: 6px 12px;
-      cursor: pointer;
-      outline: none;
-      &:first-child {
-        margin-right: 5px;
-      }
-      &-confirm {
-        box-shadow: inset 0 1px 0 0 #4d73bf;
-        background: #4267b2;
-        border:solid 1px #4267b2;
-        color: #fff;
-        text-shadow: 0 1px 0 #3359a5;
-        &:hover {
-          background: #2b54a7;
-        }
-        &:active {
-          background: #1d4698;
-          border-color: #1d4698;
-        }
-      }
-      &-cancle {
-        background: #f6f7f9;
-        border: solid 1px #ced0d4;
-        color: #4b4f56;
-        &:hover {
-          background: #e9ebee;
-        }
-        &:active {
-          background: #d8dade;
-          border-color: #d8dade;
-        }
-      }
-    }
-
   }
 }
 </style>
