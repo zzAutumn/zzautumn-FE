@@ -31,6 +31,11 @@ export default {
     PageHeader,
     PageFooter,
   },
+  data() {
+    return {
+
+    };
+  },
 };
 </script>
 <style lang="less" scoped>

@@ -13,5 +13,20 @@ export default new Router({
       name: 'home',
       component: Home,
     },
+    {
+      path: '/archive',
+      name: 'archive',
+      component: () => import('@/views/archive'),
+    },
+    {
+      path: '/books',
+      name: 'books',
+      component: () => import('@/views/books'),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/about'),
+    },
   ],
 });
