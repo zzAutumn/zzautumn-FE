@@ -9,6 +9,11 @@
 {
   font-family: ZCOOLXiaoWei;
   src: url('assets/font/ZCOOLXiaoWei-Regular.ttf');
+  src:
+    url('assets/font/ZCOOLXiaoWei-Regular.ttf?#font-spider') format('embedded-opentype'),
+    url('assets/font/ZCOOLXiaoWei-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face
 {
