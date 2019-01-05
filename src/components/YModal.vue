@@ -2,11 +2,11 @@
   <div class="modal" id='y-modal' aria-hidden="true">
     <div class="modal-dialoag">
       <div class="modal-header">
-        <p>确认进入编辑页面</p>
+        <p>{{title}}</p>
         <span class="close-btn" @click="close"><img src="@/assets/icons/close.svg"></span>
       </div>
       <div class="modal-body">
-        <p></p>
+        <slot name="content"></slot>
       </div>
       <div class="modal-footer">
         <button class="btn btn-cancle" @click="close">取消</button>
@@ -22,6 +22,9 @@ export default {
   props: {
     showModal: {
       type: Boolean,
+    },
+    title: {
+      type: String,
     },
   },
   watch: {
@@ -41,7 +44,7 @@ export default {
       this.$emit('closeModal');
     },
     confirm() {
-      this.$router.push('/edit');
+      this.$emit('confirm');
     },
   },
 };
@@ -101,6 +104,9 @@ export default {
       width: 70%;
       cursor: pointer;
     }
+  }
+  .modal-body {
+    padding: 0 20px;
   }
   .modal-footer {
     display: flex;

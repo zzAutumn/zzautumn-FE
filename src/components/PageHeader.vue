@@ -12,8 +12,10 @@
       <img src="../assets/images/banner.jpg">
     </div>
     <y-modal
+      title='确认进入编辑页面'
       :showModal="showModal"
       @closeModal="showModal = false"
+      @confirm="modalConfirm"
       ></y-modal>
   </div>
 </template>
@@ -34,6 +36,9 @@ export default {
   methods: {
     edit() {
       this.showModal = true;
+    },
+    modalConfirm() {
+      this.$router.push('/edit');
     },
   },
 };

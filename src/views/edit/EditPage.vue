@@ -16,12 +16,24 @@
     </div>
     <div class="footer">
       <button class="btn btn-cancel" @click="$router.push('/')">返回</button>
-      <button class="btn btn-confirm">提交</button>
+      <button class="btn btn-confirm" @click="showModal = true">提交</button>
     </div>
+    <y-modal
+      title="发布文章"
+      :showModal="showModal"
+      @closeModal="cancel"
+      @confirm="modalConfirm"
+      >
+      <div slot="content" class="dialog-content">
+        <input type="password" placeholder="password" v-model="password">
+        <span v-show="isWrong">错误的提交密码！</span>
+      </div>
+      </y-modal>
   </div>
 </template>
 
 <script>
+import YModal from '@/components/YModal.vue';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
@@ -32,11 +44,25 @@ export default {
   name: 'EditPage',
   components: {
     quillEditor,
+    YModal,
   },
   data() {
     return {
       editorOption: {},
+      showModal: false,
+      password: '',
+      isWrong: false,
     };
+  },
+  methods: {
+    cancel() {
+      this.showModal = false;
+      this.isWrong = false;
+      this.password = '';
+    },
+    modalConfirm() {
+      this.isWrong = !(this.password === 'bugbug');
+    },
   },
 };
 </script>
@@ -95,6 +121,17 @@ export default {
   .footer {
     margin-top: 20px;
     text-align: center;
+  }
+  .dialog-content {
+    input {
+      height: 30px;
+      outline: none;
+    }
+    span {
+      color: red;
+      display: inline-block;
+      margin-left: 10px;
+    }
   }
 }
 </style>
