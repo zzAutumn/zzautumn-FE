@@ -3,6 +3,7 @@
     <p class="header">编辑文章</p>
     <quill-editor
       ref="myQuillEditor"
+      v-model="form.content"
       :options='editorOption'
     ></quill-editor>
     <div class="tag-bar">
@@ -52,6 +53,9 @@ export default {
       showModal: false,
       password: '',
       isWrong: false,
+      form: {
+        content: '',
+      },
     };
   },
   methods: {
@@ -60,8 +64,15 @@ export default {
       this.isWrong = false;
       this.password = '';
     },
-    modalConfirm() {
-      this.isWrong = !(this.password === 'bugbug');
+    async modalConfirm() {
+      if (this.password !== 'bugbug') {
+        this.isWrong = true;
+        return false;
+      }
+      console.log(this.form.content);
+      // const result = await this.$service.article.saveArticle();
+
+      return true;
     },
   },
 };
