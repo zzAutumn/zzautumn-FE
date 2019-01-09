@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    port: 8080,
+    port: 3000,
     proxy: {
       '/zzautumn': {
         target: 'http://localhost:8080/',

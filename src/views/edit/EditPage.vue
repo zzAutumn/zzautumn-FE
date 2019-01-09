@@ -89,16 +89,18 @@ export default {
       this.showModal = false;
       this.isWrong = false;
       this.password = '';
+      this.form.content = '';
+      this.form.title = '';
+      this.form.tags = [];
     },
     async modalConfirm() {
-      console.log(this.form);
       if (this.password !== 'bugbug') {
         this.isWrong = true;
         return false;
       }
       const result = await this.$service.article.saveArticle(this.form);
       console.log(result);
-      if (result.code === '200') {
+      if (result.data.code === '200') {
         this.alertMessage = '保存文章成功';
         this.showBanner = true;
         this.cancel();
