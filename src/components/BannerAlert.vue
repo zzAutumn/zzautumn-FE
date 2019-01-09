@@ -1,5 +1,5 @@
 <template>
-  <div class="banner" :class="{active: showBanner}">
+  <div class="banner">
     {{content}}
   </div>
 </template>
@@ -14,25 +14,24 @@ export default {
     messageType: {
       type: String,
     },
+    showBanner: {
+      type: Boolean,
+    },
   },
   data() {
     return {
       showTimer: null,
     };
   },
-  computed: {
-    showBanner() {
-      this.$nextTick(() => {
-        console.log(document.querySelector('.banner').className);
-        const className = document.querySelector('.banner').className.split(' ');
+  watch: {
+    showBanner(val) {
+      if (val) {
+        document.querySelector('.banner').classList.add('active');
         this.showTimer = setTimeout(() => {
-          if (className.includes('active')) {
-            document.querySelector('.banner').className = className.filter(i => i !== 'active').join(' ');
-            console.log(document.querySelector('.banner').className);
-          }
+          document.querySelector('.banner').classList.remove('active');
+          this.$emit('closeBanner');
         }, 2000);
-      });
-      return this.content !== '';
+      }
     },
   },
   methods: {
@@ -49,13 +48,14 @@ export default {
   right:0;
   z-index:100;
   padding: 10px 20px;
-  // transform: translate3d(0,-100%,0);
-  opacity: 0;
+  transform: translate3d(0,-1000%,0);
   transition:0.2s all ease-in-out;
+  background-color: #a64ace;
+  color: #fff;
+  font-weight: 600;
 }
 .active{
-  // transform: translate3d(0,0,0) !important;
-  opacity: 1;
-  // transition:0s all ease-in-out;
+  transform: translate3d(0,0,0) !important;
+  transition:0.2s all ease-in-out;
 }
 </style>

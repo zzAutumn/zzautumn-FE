@@ -23,9 +23,6 @@
       <button class="btn btn-cancel" @click="$router.push('/')">返回</button>
       <button class="btn btn-confirm" @click="showModal = true">提交</button>
     </div>
-    <div>
-      <button @click="test">test banner</button>
-    </div>
     <y-modal
       title="发布文章"
       :showModal="showModal"
@@ -39,6 +36,8 @@
       </y-modal>
       <banner-alert
         :content='alertMessage'
+        :showBanner="showBanner"
+        @closeBanner="closeBanner"
       ></banner-alert>
   </div>
 </template>
@@ -61,6 +60,7 @@ export default {
   },
   data() {
     return {
+      showBanner: false,
       editorOption: {},
       showModal: false,
       password: '',
@@ -81,8 +81,9 @@ export default {
         this.tag = '';
       }
     },
-    test() {
-      this.alertMessage = 'just a test';
+    closeBanner() {
+      this.alertMessage = '';
+      this.showBanner = false;
     },
     cancel() {
       this.showModal = false;
@@ -98,6 +99,8 @@ export default {
       const result = await this.$service.article.saveArticle(this.form);
       console.log(result);
       if (result.code === '200') {
+        this.alertMessage = '保存文章成功';
+        this.showBanner = true;
         this.cancel();
       }
       return true;
