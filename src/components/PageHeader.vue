@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="row">
-      <span class="typo-logo" @click="edit">zzAutumn</span>
+      <span class="typo-logo">zzAutumn</span>
       <ul>
         <li><router-link :to="{name: 'archive'}">归档</router-link></li>
         <li><router-link :to="{name: 'books'}">读书</router-link></li>
@@ -11,35 +11,20 @@
     <div class="img-banner">
       <img src="../assets/images/banner.jpg">
     </div>
-    <y-modal
-      title='确认进入编辑页面'
-      :showModal="showModal"
-      @closeModal="showModal = false"
-      @confirm="modalConfirm"
-      ></y-modal>
   </div>
 </template>
 
 <script>
-import YModal from '@/components/YModal.vue';
 
 export default {
   name: 'PageHeader',
-  components: {
-    YModal,
-  },
   data() {
     return {
       showModal: false,
     };
   },
   methods: {
-    edit() {
-      this.showModal = true;
-    },
-    modalConfirm() {
-      this.$router.push('/edit');
-    },
+
   },
 };
 </script>

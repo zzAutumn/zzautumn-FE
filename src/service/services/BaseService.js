@@ -8,6 +8,6 @@ export default class BaseService {
 
   async post(url, data = {}) {
     const result = await axios.post(url, data);
-    return result;
+    return result.data;
   }
 }

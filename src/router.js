@@ -29,9 +29,9 @@ export default new Router({
       component: () => import('@/views/about'),
     },
     {
-      path: '/edit',
-      name: 'editArticle',
-      component: () => import('@/views/edit/EditPage'),
+      path: '/article/:id',
+      name: 'viewArticle',
+      component: () => import('@/views/article/index'),
     },
   ],
 });

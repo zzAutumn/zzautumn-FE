@@ -1,20 +1,17 @@
 <template>
   <div class="home">
     <page-header></page-header>
-    <div class="main-wrap">
-      <div class="card">
-        <p class="title"><img src="@/assets/icons/office.svg"> JS 数组的几个常用方法</p>
-        <p class="date"><img src="@/assets/icons/calendar.svg"> 2019-01-04</p>
-        <p class="abstract">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <div class="main-wrap">
+        <transition-group name="fade-transform">
+          <div class="card" v-for="(item, index) in articleList" :key="`${index}-${item.title}`" @click="handleClick(item.id)">
+            <p class="title"><img src="@/assets/icons/office.svg"> {{item.title}}</p>
+            <p class="date"><img src="@/assets/icons/calendar.svg"> {{item.updateDate}}</p>
+          </div>
+        </transition-group>
       </div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-    </div>
     <div class="page">
-      <span>上一页</span>
-      <span>下一页</span>
+      <span @click="prevPage">上一页</span>
+      <span @click="nextPage">下一页</span>
     </div>
     <page-footer></page-footer>
   </div>
@@ -33,8 +30,42 @@ export default {
   },
   data() {
     return {
-
+      queryForm: {
+        pageIndex: 1,
+        pageSize: 9,
+        title: '', // 1 6 7 10 11 12
+      },
+      articleList: [],
     };
+  },
+  methods: {
+    async getData() {
+      const result = await this.$service.article.getArticles(this.queryForm);
+      if (result.code === '200') {
+        this.articleList = result.data.content;
+      }
+    },
+    prevPage() {
+      if (this.queryForm.pageIndex === 1) {
+        return;
+      }
+      this.queryForm.pageIndex -= 1;
+      this.getData();
+    },
+    nextPage() {
+      if (this.articleList.length < 9) {
+        return;
+      }
+      this.queryForm.pageIndex += 1;
+      this.getData();
+    },
+    handleClick(id) {
+      console.log(id);
+      this.$router.push(`/article/${id}`);
+    },
+  },
+  created() {
+    this.getData();
   },
 };
 </script>
@@ -45,7 +76,7 @@ export default {
   padding: 20px 50px;
   height: 100%;
   justify-content: space-between;
-  .main-wrap {
+  .main-wrap span {
     flex: 1;
     margin: 20px 0px;
     display: grid;
@@ -100,5 +131,19 @@ export default {
       cursor: pointer;
     }
   }
+}
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s ease-in-out;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
 }
 </style>

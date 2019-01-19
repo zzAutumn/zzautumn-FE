@@ -1,6 +1,7 @@
 const API = {
   article: {
-    saveArticle: '/zzautumn/v1/article/save-article',
+    getArticleList: '/zzautumn/v1/article/getArticleList',
+    findById: '/zzautumn/v1/article/getById',
   },
 };
 
